@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Forms</title>
+    <link rel="stylesheet" href="registration.css">
+</head>
+<body>
+    <section class="forms-container">
+        <!-- Login Form -->
+        <div class="login-box active" id="login-box">
+            <form id="login-form">
+                <h2>Login</h2>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" id="login-email" required>
+                    <label for="">Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" id="login-password" required>
+                    <label for="">Password</label>
+                </div>
+                <div class="remember-forget">
+                    <label><input type="checkbox" id="remember-me"> Remember me</label>
+                    <a href="javascript:void(0)" onclick="toggleBox('forgot-password')">Forgot password</a>
+                </div>
+                <button type="submit">Login</button>
+                <div class="register-link">
+                    <p>
+                        Don't have an account? <a href="javascript:void(0)" onclick="toggleBox('register')">Register</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Register Form -->
+        <div class="register-box" id="register-box">
+            <form id="register-form">
+                <h2>Register</h2>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    <input type="text" id="full-name" required>
+                    <label for="">Full Name</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    <input type="text" id="gender" required>
+                    <label for="">Gender</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" id="register-email" required>
+                    <label for="">Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="call"></ion-icon></span>
+                    <input type="tel" id="phone" required pattern="[0-9]{10}" title="Enter a 10-digit phone number">
+                    <label for="">Phone Number</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="home"></ion-icon></span>
+                    <input type="text" id="address" required>
+                    <label for="">Address</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" id="register-password" required>
+                    <label for="">Password</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" id="confirm-password" required>
+                    <label for="">Confirm Password</label>
+                </div>
+                <button type="submit">Register</button>
+                <div class="register-link">
+                    <p>
+                        Already have an account? <a href="javascript:void(0)" onclick="toggleBox('login')">Login</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div class="forgot-password-box" id="forgot-password-box">
+            <form id="forgot-password-form">
+                <h2>Forgot Password</h2>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" id="forgot-email" required>
+                    <label for="">Enter your email</label>
+                </div>
+                <button type="submit">Send OTP</button>
+                <div class="register-link">
+                    <p>
+                        Remembered your password? <a href="javascript:void(0)" onclick="toggleBox('login')">Login</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        <!-- OTP Verification Form -->
+        <div class="otp-verification-box" id="otp-verification-box">
+            <form id="otp-form">
+                <h2>OTP Verification</h2>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="key"></ion-icon></span>
+                    <input type="text" id="otp" required>
+                    <label for="">Enter OTP</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" id="new-password" required>
+                    <label for="">New Password</label>
+                </div>
+                <button type="submit">Reset Password</button>
+            </form>
+        </div>
+    </section>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="registration.js"></script>
+</body>
+</html>
