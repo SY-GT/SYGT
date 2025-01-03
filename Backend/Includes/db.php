@@ -1,9 +1,9 @@
 <?php
 // Configuration details
-$host= "sql101.infinityfree.com"; // MySQL Host Name
-$user = "if0_37965375";              // MySQL User Name
-$password = "SYGT808GHOST";              // vPanel Password
-$dbname = "if0_37965375_SYGT";           
+$host= "localhost"; // MySQL Host Name
+$user = "root";              // MySQL User Name
+$password = "";              // vPanel Password
+$dbname = "";           
 // Create connection using PDO for better security
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
