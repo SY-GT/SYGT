@@ -1,41 +1,61 @@
+
 // Open Popup
-            document.querySelectorAll(".buy-button").forEach(button => {
-                button.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    document.getElementById("instagramPopup").style.display = "flex";
-                });
-            });
+document.querySelectorAll(".buy-button").forEach(button => {
+  button.addEventListener("click", function(e) {
+    e.preventDefault();
+    document.getElementById("instagramPopup").style.display = "flex";
+  });
+});
 
-            // Close Popup
-            document.querySelector(".close-btn").addEventListener("click", function() {
-                document.getElementById("instagramPopup").style.display = "none";
-            });
+// Close Popup
+document.querySelector(".close-btn").addEventListener("click", function() {
+  document.getElementById("instagramPopup").style.display = "none";
+});
 
-            // Submit Form & Redirect to Instagram DM
-            document.getElementById("dmForm").addEventListener("submit", function(e) {
-                e.preventDefault();
-                const firstName = document.getElementById("firstName").value;
-                const lastName = document.getElementById("lastName").value;
-                const phone = document.getElementById("popupPhone").value;
-                const email = document.getElementById("popupEmail").value || "Not provided";
-                const addressLine1 = document.getElementById("addressLine1").value;
-                const addressLine2 = document.getElementById("addressLine2").value;
-                const city = document.getElementById("city").value;
-                const postalCode = document.getElementById("postalCode").value;
-                const state = document.getElementById("IndianState").value;
-                const product = this.closest(".col-4")?.querySelector("h4")?.innerText || "Product";
+// Submit Form & Send to Telegram Bot
+document.getElementById("dmForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-                // Instagram username
-                const instagramUsername = "gh0st._.80";
+  // Get product details
+  const productName = document.querySelector("h4").innerText;
+  const productImage = document.querySelector("img").src;
 
-                // Pre-filled message
-                const message = `Hi! I want to buy *${product}*.\n\nName: ${firstName} ${lastName}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${addressLine1}, ${addressLine2}, ${city}, ${state} - ${postalCode}`;
+  // Get form data
+  const firstName = document.getElementById("firstName").value;
+  const lastName = document.getElementById("lastName").value;
+  const phone = document.getElementById("popupPhone").value;
+  const email = document.getElementById("popupEmail").value || "Not provided";
+  const addressLine1 = document.getElementById("addressLine1").value;
+  const city = document.getElementById("city").value;
+  const postalCode = document.getElementById("postalCode").value;
+  const state = document.getElementById("IndianState").value;
 
-                // Open Instagram DM window
-                const url = `https://www.instagram.com/direct/t/${instagramUsername}?text=${encodeURIComponent(message)}`;
-                const newTab = window.open();
-                newTab.location.href = url;
+  // Telegram Bot API Token and Chat ID
+  require('dotenv').config();
+  const telegramBotToken = process.env.Api;
+const chatId = process.env.Id;
+  // Message
+  const message = `New Order!
+Product: ${productName}
+Name: ${firstName} ${lastName}
+Phone: ${phone}
+Email: ${email}
+Address: ${addressLine1}, ${city}, ${state} - ${postalCode}`;
 
-                // Close popup
-                document.getElementById("instagramPopup").style.display = "none";
-            });
+  // Send Image to Telegram Bot
+  const imageUrl = `https://api.telegram.org/bot${telegramBotToken}/sendPhoto?chat_id=${chatId}&photo=${encodeURIComponent(productImage)}`;
+  fetch(imageUrl)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+  // Send Message to Telegram Bot
+  const textUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+  fetch(textUrl)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+  // Close popup
+  document.getElementById("instagramPopup").style.display = "none";
+});
