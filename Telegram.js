@@ -40,12 +40,6 @@ Phone: ${phone}
 Email: ${email}
 Address: ${addressLine1}, ${city}, ${state} - ${postalCode}`;
 
-  // Send Image to Telegram Bot
-  const imageUrl = `https://api.telegram.org/bot${telegramBotToken}/sendPhoto?chat_id=${chatId}&photo=${encodeURIComponent(productImage)}`;
-  fetch(imageUrl)
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
 
   // Send Message to Telegram Bot
   const textUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
